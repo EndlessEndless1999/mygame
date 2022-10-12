@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/m7th.mp3-44b97c6e6fac51cf42f81ea4440db2dd.mp3str"
+
+[deps]
+
+source_file="res://SCRIPTS:SCENES/MUSIC/m7th.mp3"
+dest_files=[ "res://.import/m7th.mp3-44b97c6e6fac51cf42f81ea4440db2dd.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/tonic.mp3-44b2c5b71044ac90787818fc8d43752b.mp3str"
+
+[deps]
+
+source_file="res://SCRIPTS:SCENES/MUSIC/tonic.mp3"
+dest_files=[ "res://.import/tonic.mp3-44b2c5b71044ac90787818fc8d43752b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

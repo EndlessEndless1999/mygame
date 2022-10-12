@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/music game theme 1-808 Core Kit.mp3-8ae7d976d3cd1e65d0d4de994b204ecb.mp3str"
+
+[deps]
+
+source_file="res://SCRIPTS:SCENES/MUSIC/music game theme 1-808 Core Kit.mp3"
+dest_files=[ "res://.import/music game theme 1-808 Core Kit.mp3-8ae7d976d3cd1e65d0d4de994b204ecb.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

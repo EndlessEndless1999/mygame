@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/m3rd.mp3-f69eec529dbf1f9f02e54ea2159b15ca.mp3str"
+
+[deps]
+
+source_file="res://SCRIPTS:SCENES/MUSIC/m3rd.mp3"
+dest_files=[ "res://.import/m3rd.mp3-f69eec529dbf1f9f02e54ea2159b15ca.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

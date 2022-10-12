@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/music game theme 808.mp3-6763249a1b2290d3eda6f2818d82ed3f.mp3str"
+
+[deps]
+
+source_file="res://SCRIPTS:SCENES/MUSIC/music game theme 808.mp3"
+dest_files=[ "res://.import/music game theme 808.mp3-6763249a1b2290d3eda6f2818d82ed3f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

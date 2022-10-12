@@ -1,0 +1,100 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://SCRIPTS:SCENES/space_ship.png" type="Texture" id=1]
+[ext_resource path="res://SCRIPTS:SCENES/EnemyAI.gd" type="Script" id=2]
+[ext_resource path="res://SCRIPTS:SCENES/Stats.tscn" type="PackedScene" id=3]
+[ext_resource path="res://SCRIPTS:SCENES/explosion.png" type="Texture" id=4]
+[ext_resource path="res://SCRIPTS:SCENES/Hitbox.tscn" type="PackedScene" id=5]
+
+[sub_resource type="CapsuleShape2D" id=1]
+height = 26.0
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 21.2132
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Explosion:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "death"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Explosion:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "dead_anim"
+} ]
+}
+
+[node name="EnemyAI" type="KinematicBody2D"]
+collision_layer = 32775
+collision_mask = 32771
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.188235, 0.572549, 0.941176, 1 )
+rotation = 3.14159
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Stats" parent="." instance=ExtResource( 3 )]
+
+[node name="Hitbox" parent="." instance=ExtResource( 5 )]
+collision_layer = 257
+collision_mask = 16
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 0, 32 )
+shape = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 0, 64 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 4 )
+anims/death = SubResource( 5 )
+
+[node name="Explosion" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 4 )
+hframes = 7
+
+[editable path="Hitbox"]

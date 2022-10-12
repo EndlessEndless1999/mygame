@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/p5th.mp3-bc8cd1aba17ccf15458652fced8206b1.mp3str"
+
+[deps]
+
+source_file="res://SCRIPTS:SCENES/MUSIC/p5th.mp3"
+dest_files=[ "res://.import/p5th.mp3-bc8cd1aba17ccf15458652fced8206b1.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

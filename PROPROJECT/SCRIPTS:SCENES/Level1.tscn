@@ -1,0 +1,318 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://SCRIPTS:SCENES/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://SCRIPTS:SCENES/1.png" type="Texture" id=2]
+[ext_resource path="res://SCRIPTS:SCENES/AudioStreamPlayer2D.gd" type="Script" id=3]
+[ext_resource path="res://SCRIPTS:SCENES/EnemyAI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://SCRIPTS:SCENES/EnemyAI_Left.tscn" type="PackedScene" id=5]
+[ext_resource path="res://SCRIPTS:SCENES/EnemyAI_Right.tscn" type="PackedScene" id=6]
+[ext_resource path="res://SCRIPTS:SCENES/EnemyAI.gd" type="Script" id=7]
+[ext_resource path="res://SCRIPTS:SCENES/Raycast_Collider.gd" type="Script" id=8]
+[ext_resource path="res://SCRIPTS:SCENES/Raycast_Collider2.gd" type="Script" id=9]
+[ext_resource path="res://SCRIPTS:SCENES/MUSIC/music game theme 1-808 Core Kit.mp3" type="AudioStream" id=10]
+[ext_resource path="res://SCRIPTS:SCENES/MUSIC/music game theme BASS.mp3" type="AudioStream" id=11]
+[ext_resource path="res://SCRIPTS:SCENES/MUSIC/music game theme 808.mp3" type="AudioStream" id=12]
+[ext_resource path="res://SCRIPTS:SCENES/MUSIC/music game theme LEAD.mp3" type="AudioStream" id=13]
+[ext_resource path="res://SCRIPTS:SCENES/MUSIC/music game theme DRONE.mp3" type="AudioStream" id=14]
+[ext_resource path="res://SCRIPTS:SCENES/Spawn_Location.tscn" type="PackedScene" id=15]
+[ext_resource path="res://SCRIPTS:SCENES/Level1.gd" type="Script" id=16]
+[ext_resource path="res://SCRIPTS:SCENES/Player_Note.gd" type="Script" id=17]
+[ext_resource path="res://SCRIPTS:SCENES/Level1.tres" type="Theme" id=18]
+[ext_resource path="res://SCRIPTS:SCENES/Interval.gd" type="Script" id=19]
+[ext_resource path="res://SCRIPTS:SCENES/Enemy_Note.gd" type="Script" id=20]
+[ext_resource path="res://SCRIPTS:SCENES/MUSIC/m7th.mp3" type="AudioStream" id=21]
+[ext_resource path="res://SCRIPTS:SCENES/Interval_Player.gd" type="Script" id=22]
+[ext_resource path="res://SCRIPTS:SCENES/MUSIC/tonic.mp3" type="AudioStream" id=23]
+[ext_resource path="res://SCRIPTS:SCENES/MUSIC/p5th.mp3" type="AudioStream" id=24]
+[ext_resource path="res://SCRIPTS:SCENES/MUSIC/m3rd.mp3" type="AudioStream" id=25]
+[ext_resource path="res://SCRIPTS:SCENES/MUSIC/m2nd.mp3" type="AudioStream" id=26]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6, 316.5 )
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 24.0
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Button:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Button:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "finish"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Button:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Button:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Level1" type="Node2D"]
+script = ExtResource( 16 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 2048.0
+margin_bottom = 2048.0
+texture = ExtResource( 2 )
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource( 1 )]
+position = Vector2( 324, 328 )
+
+[node name="Drums" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+autoplay = true
+script = ExtResource( 3 )
+bpm = 134
+measures = 1
+
+[node name="Bass" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -80.0
+autoplay = true
+script = ExtResource( 3 )
+bpm = 134
+measures = 1
+wave_type = 1
+shoot_master = false
+
+[node name="Chords" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = -80.0
+autoplay = true
+script = ExtResource( 3 )
+bpm = 134
+measures = 1
+wave_type = 2
+shoot_master = false
+
+[node name="Melody" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = -80.0
+autoplay = true
+script = ExtResource( 3 )
+bpm = 134
+measures = 1
+wave_type = 3
+shoot_master = false
+
+[node name="808" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -80.0
+autoplay = true
+script = ExtResource( 3 )
+bpm = 134
+measures = 1
+wave_type = 4
+shoot_master = false
+
+[node name="Level_Collider" type="StaticBody2D" parent="." groups=["Wall"]]
+collision_layer = 32771
+collision_mask = 32771
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level_Collider"]
+position = Vector2( -4, 179.5 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Level_Collider"]
+position = Vector2( 644, 180 )
+shape = SubResource( 1 )
+
+[node name="Bullet_Collider" type="Area2D" parent="."]
+
+[node name="Top_Level" type="CollisionShape2D" parent="Bullet_Collider"]
+position = Vector2( 320.5, 1.55175e-06 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="Bottom_Level" type="CollisionShape2D" parent="Bullet_Collider"]
+position = Vector2( 319, 362 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="EnemyAI" parent="." groups=["Enemy"] instance=ExtResource( 4 )]
+position = Vector2( 320, 40 )
+
+[node name="EnemyAI_Left" parent="." groups=["Enemy", "EnemyLeft"] instance=ExtResource( 5 )]
+position = Vector2( 128, 56 )
+
+[node name="EnemyAI_Right" parent="." groups=["Enemy", "EnemyRight"] instance=ExtResource( 6 )]
+position = Vector2( 512, 56 )
+script = ExtResource( 7 )
+
+[node name="Raycast_Collider" type="Area2D" parent="." groups=["Wall"]]
+collision_layer = 32771
+collision_mask = 3
+script = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Raycast_Collider"]
+position = Vector2( 16, 78 )
+shape = SubResource( 2 )
+
+[node name="Raycast_Collider2" type="Area2D" parent="." groups=["Wall"]]
+collision_layer = 32775
+collision_mask = 32775
+script = ExtResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Raycast_Collider2"]
+position = Vector2( 626, 83 )
+shape = SubResource( 2 )
+
+[node name="Spawn_Location" parent="." instance=ExtResource( 15 )]
+position = Vector2( 320, 40 )
+
+[node name="Spawn_Location2" parent="." instance=ExtResource( 15 )]
+position = Vector2( 226, 55 )
+
+[node name="Spawn_Location3" parent="." instance=ExtResource( 15 )]
+position = Vector2( 421, 55 )
+
+[node name="Spawn_Location4" parent="." instance=ExtResource( 15 )]
+position = Vector2( 270, 93 )
+
+[node name="Spawn_Location5" parent="." instance=ExtResource( 15 )]
+position = Vector2( 382, 90 )
+
+[node name="Spawn_Location_Left" parent="." instance=ExtResource( 15 )]
+position = Vector2( 128, 57 )
+
+[node name="Spawn_Location_Right" parent="." instance=ExtResource( 15 )]
+position = Vector2( 513, 57 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 4 )
+anims/finish = SubResource( 3 )
+
+[node name="Button" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 212.0
+margin_top = 169.0
+margin_right = 423.0
+margin_bottom = 243.0
+theme = ExtResource( 18 )
+disabled = true
+text = "Retry?"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Current_Note" type="RichTextLabel" parent="CanvasLayer"]
+margin_left = 3.0
+margin_top = 375.0
+margin_right = 102.0
+margin_bottom = 415.0
+theme = ExtResource( 18 )
+text = "CURRENT NOTE:"
+
+[node name="Player_Note" type="RichTextLabel" parent="CanvasLayer"]
+margin_left = 104.0
+margin_top = 374.0
+margin_right = 203.0
+margin_bottom = 414.0
+size_flags_stretch_ratio = 0.0
+theme = ExtResource( 18 )
+text = "A"
+script = ExtResource( 17 )
+
+[node name="Current_Enemy_Note" type="RichTextLabel" parent="CanvasLayer"]
+margin_left = 521.0
+margin_top = 375.0
+margin_right = 620.0
+margin_bottom = 415.0
+theme = ExtResource( 18 )
+text = "ENEMY NOTE:"
+
+[node name="Enemy_Note" type="RichTextLabel" parent="CanvasLayer"]
+margin_left = 604.0
+margin_top = 374.0
+margin_right = 703.0
+margin_bottom = 414.0
+size_flags_stretch_ratio = 0.0
+theme = ExtResource( 18 )
+text = "A"
+script = ExtResource( 20 )
+
+[node name="Required Interval" type="RichTextLabel" parent="CanvasLayer"]
+margin_left = 249.0
+margin_top = 368.0
+margin_right = 361.0
+margin_bottom = 408.0
+theme = ExtResource( 18 )
+tab_size = 6
+text = "REQUIRED INTERVAL!   :"
+
+[node name="Interval" type="RichTextLabel" parent="CanvasLayer"]
+margin_left = 341.0
+margin_top = 368.0
+margin_right = 403.0
+margin_bottom = 408.0
+theme = ExtResource( 18 )
+text = "MINOR 6TH"
+script = ExtResource( 19 )
+
+[node name="Interval_Player" type="Node2D" parent="."]
+script = ExtResource( 22 )
+
+[node name="M7" type="AudioStreamPlayer" parent="Interval_Player"]
+stream = ExtResource( 21 )
+volume_db = 1.0
+
+[node name="M3" type="AudioStreamPlayer" parent="Interval_Player"]
+stream = ExtResource( 25 )
+
+[node name="P5" type="AudioStreamPlayer" parent="Interval_Player"]
+stream = ExtResource( 24 )
+volume_db = 13.109
+
+[node name="Ma2" type="AudioStreamPlayer" parent="Interval_Player"]
+stream = ExtResource( 26 )
+volume_db = 11.361
+
+[node name="Tonic" type="AudioStreamPlayer" parent="Interval_Player"]
+stream = ExtResource( 23 )
+volume_db = 17.042
+
+[connection signal="body_entered" from="Raycast_Collider" to="Raycast_Collider" method="_on_Raycast_Collider_body_entered"]
+[connection signal="body_entered" from="Raycast_Collider2" to="Raycast_Collider2" method="_on_Raycast_Collider2_body_entered"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="finished" from="Interval_Player/M7" to="Interval_Player" method="_on_M7_finished"]
